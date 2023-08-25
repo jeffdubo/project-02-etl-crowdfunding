@@ -1,0 +1,36 @@
+# Crowdfunding DB ERD
+
+campaigns
+-
+cd_id INT PK
+contact_id INT FK >- contacts.contact_id 
+company_name VARCHAR(50)
+description VARCHAR(50)
+goal FLOAT
+outcome VARCHAR(10)
+backers_count INT
+country VARCHAR(2)
+currency VARCHAR(3)
+lauched_date DATE
+end_date DATE
+staff_pick BOOLEAN
+spotlight BOOLEAN
+category_id INT FK >- category.category_id
+subcategory_id INT FK >- subcategory.subcategory_id
+
+contacts
+-
+contact_id INT PK
+first_name VARCHAR(30)
+last_name VARCHAR(30
+email VARCHAR(50)
+
+category
+-
+category_id INT PK
+category VARCHAR(30)
+
+subcategory
+-
+subcategory_id INT PK
+subcategory VARCHAR(30)
