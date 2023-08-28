@@ -14,7 +14,7 @@ CREATE TABLE contacts (
 );
 
 CREATE TABLE category (
-	category_id VARCHR(5) PRIMARY KEY,
+	category_id VARCHAR(5) PRIMARY KEY,
 	category VARCHAR(30) NOT NULL
 );
 	
@@ -23,26 +23,24 @@ CREATE TABLE subcategory (
 	subcategory VARCHAR(30) NOT NULL
 );
 
--- Need to review/determine which fields should have "NOT NULL"
 CREATE TABLE campaign (
 	cd_id INT PRIMARY KEY,
 	contact_id INT,
 	company_name VARCHAR(50) NOT NULL,
-	description VARCHAR(50),
-	goal DOUBLE NOT NULL,
+	description VARCHAR(100) NOT NULL,
+	goal FLOAT NOT NULL,
+	pledged FLOAT NOT NULL,
 	outcome VARCHAR(10) NOT NULL,
-	backers_count INT, 
+	backers_count INT NOT NULL,
 	country VARCHAR(2) NOT NULL,
 	currency VARCHAR(3) NOT NULL,
-	lauched_date DATE NOT NULL,
+	launch_date DATE NOT NULL,
 	end_date DATE NOT NULL,
-	staff_pick BOOLEAN,
-	spotlight BOOLEAN,
-	category_id VARCHR(5),
-	subcategory_id VARCHAR(9),
+	category_id VARCHAR(5) NOT NULL,
+	subcategory_id VARCHAR(9) NOT NULL,
 	FOREIGN KEY (contact_id) REFERENCES contacts(contact_id),
 	FOREIGN KEY (category_id) REFERENCES category(category_id),
-	FOREIGN KEY (subcategory_id) REFERENCES contacts(subcategory_id)
+	FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id)
 );
 
 -- 2. Review and verify imported data
@@ -53,6 +51,6 @@ SELECT * FROM subcategory
 SELECT * FROM campaign
 
 SELECT COUNT(*) FROM contacts		-- 1000 records
-SELECT COUNT(*) FROM category
-SELECT COUNT(*) FROM subcategory
-SELECT COUNT(*) FROM campaign
+SELECT COUNT(*) FROM category		-- 9 records
+SELECT COUNT(*) FROM subcategory	-- 24 records
+SELECT COUNT(*) FROM campaign		-- 1000 records
